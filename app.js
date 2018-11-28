@@ -11,21 +11,23 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-//몽고db 연결
 function connectDB()
 {
   var databaseUrl = "mongodb://localhost:27017/testdb";
 
-  //db 연결
   mongodb.connect(databaseUrl,function(err ,database)
   {
       if(err)
+      {
         throw err;
+      }
+      else
+      {
         console.log("db연결 완료 : " + databaseUrl);
-        app.set('database',database.db('testdb'));
+      }
   });
 }
-connectDB();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
